@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from './context/AuthContext';
+import Dashboard from './auth/dashboard';
+import Register from './auth/register';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from './components/loader';
 
 function App() {
+  const { registrationStatus, userName, userAddress, totalUsers, lastExpense } = useAuth();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (registrationStatus) {
+
+      setTimeout(() => {
+        setLoading(false); 
+      }, 2000);
+    }
+  }, [registrationStatus]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      {registrationStatus ? (
+        loading ? (
+          <Loader size="24" color="#D35400" /> 
+        ) : (
+          <Dashboard
+            userName={userName}
+            userAddress={userAddress}
+            totalUsers={totalUsers}
+            lastExpense={lastExpense}
+          />
+        )
+      ) : (
+        <Register />
+      )}
+    </>
   );
 }
 
