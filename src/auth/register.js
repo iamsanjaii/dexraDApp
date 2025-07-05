@@ -28,7 +28,7 @@ export default function Register() {
   return (
     <div className="shadow-lg flex flex-col min-h-screen bg-[#0A0A0A] px-6 py-4">
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-white text-2xl font-semibold">Dexra Expense Tracker</h1>
+        <h1 className="text-white text-2xl font-semibold">Dexra BlockChain Expense Tracker</h1>
         <div className="flex flex-col items-center justify-center w-full h-full px-4 mt-4">
           <div className="bg-[#2A2A2A] bg-opacity-50 backdrop-blur-lg items-center rounded-lg p-6 w-full max-w-xs mb-4">
             <input
